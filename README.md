@@ -9,3 +9,6 @@ Arranqué a cursar el 2020 y aprobé una sola materia (Química), pero ya estoy 
 Me gusta todo el deporte en general, ver y practicar, especialmente fútbol, natación y básquet
 
 Amo descurbir nueva música, últimamente estoy escuchando mucho una banda que se llama ***Pacífica*** (https://www.youtube.com/watch?v=PEfsyxNPH4E)
+
+```
+Legajo: 176.382-9
