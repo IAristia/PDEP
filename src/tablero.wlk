@@ -53,6 +53,8 @@ object tablero {
 	// Actualizar el nivel del monstruo - VER
 	var nivel = 1
 	
+	var contador = 0
+	
 	var nivelMonstruo = 2
 	
 	const objetosEnTablero = []
@@ -106,18 +108,47 @@ object tablero {
 				}			
 		}
 }
+
 	method generarObjeto(columna,fila){
 		   
 		if(posicionesImportantes.esPosicionImportante(columna,fila)){
 			// Se supone que este vacio para que no se generen objetos en las posiciones de esos objetos
 		}else{
-			const num = (0.randomUpTo(3)).roundUp()
-			if (num == 1 or num == 2) {
-				const numero = (0.randomUpTo(4)).roundUp()
+			
+			if (contador <= 0) {
+				self.generarObjetoMalo(columna, fila)
+				contador =+ 1
+			}
+			
+		else if (contador > 0){
+				self.generarObjetoBueno(columna, fila)
+				contador =- 1 
+			}
+		
+else if (contador == 0){
+			const numero = (0.randomUpTo(2)).roundUp()
+			
 				if(numero == 1){
-					const monstruo1 = new Monstruo(nivel = 1,position = game.at(columna,fila), imagen = "assets/monstruos/monstruo1.png")
-					game.addVisual(monstruo1)
-					objetosEnTablero.add(monstruo1)			
+				self.generarObjetoBueno(columna,fila)
+				contador =+ 1
+				}
+				if(numero == 2){
+				self.generarObjetoBueno(columna,fila)
+				contador =- 1	
+				
+			}
+		} 		
+	} 		
+}
+
+	method generarObjetoMalo(columna, fila) {
+		
+		const numero = (0.randomUpTo(4)).roundUp()
+		
+				if(numero == 1){
+				const monstruo1 = new Monstruo(nivel = 1,position = game.at(columna,fila), imagen = "assets/monstruos/monstruo1.png")
+				game.addVisual(monstruo1)
+				objetosEnTablero.add(monstruo1)			
 				}
 				if(numero == 2){
 					const monstruo2 = new Monstruo(nivel = nivelMonstruo,position = game.at(columna,fila), imagen = "assets/monstruos/monstruo2.png")
@@ -134,9 +165,12 @@ object tablero {
 				game.addVisual(pinches1)
 				objetosEnTablero.add(pinches1)			
 				}
-			}
-		else if (num == 3){
-				const numero = (0.randomUpTo(9)).roundUp()
+	}
+	
+	method generarObjetoBueno(columna, fila) {
+		
+		const numero = (0.randomUpTo(9)).roundUp()
+	
 				if(numero == 1){
 					const vida1 = new Pocion(nivel = 1, imagen = "assets/items/pocion1.png", position = game.at(columna,fila))
 					game.addVisual(vida1)
@@ -182,9 +216,7 @@ object tablero {
 					game.addVisual(moneda1)
 					objetosEnTablero.add(moneda1)			
 				}
-		}
-}
-}
+	}
 	
 	method generarParedes() {
 			
