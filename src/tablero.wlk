@@ -53,7 +53,7 @@ object tablero {
 	// Actualizar el nivel del monstruo - VER
 	var nivel = 1
 	
-	var contador = 0
+	var contador = ruben.vida() - 1 + ruben.ataque() + ruben.defensa()
 	
 	var nivelMonstruo = 2
 	
