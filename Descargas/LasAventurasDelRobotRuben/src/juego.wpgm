@@ -1,0 +1,44 @@
+import wollok.game.*
+import pjPrincipal.*
+import monstruos.*
+import items.*
+import inventario.*
+import tablero.*
+import dealer.*
+
+program juego {
+	
+    game.title("La aventura del Robot Ruben")
+    game.width(9)
+	game.height(11)
+
+    tablero.generarObjetosTablero()
+    tablero.generarParedes()
+    tablero.cargarVisualesInicio()
+    tablero.cargarVisualesObjetosImportantes() 
+    
+    var personaje = ruben
+	
+    keyboard.up().onPressDo({ 
+        personaje.moverseHaciaArriba()
+    })
+    keyboard.down().onPressDo({ 
+        personaje.moverseHaciaAbajo()
+    })
+    keyboard.left().onPressDo({ 
+        personaje.moverseHaciaIzquierda()
+    })
+    keyboard.right().onPressDo({ 
+        personaje.moverseHaciaDerecha()
+    })    
+   
+    keyboard.space().onPressDo({
+		ruben.powerUpQueTiene().esUsado(ruben)
+	})
+
+	
+ 	game.onCollideDo(personaje, { objeto_ => objeto_.esChocado(personaje) }  )
+
+
+    game.start()
+}
