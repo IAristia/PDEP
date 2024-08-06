@@ -1,0 +1,45 @@
+import example.*
+
+test "Parrillada de tres componentes" {
+	const provoletaSinEmpanar = new Provoleta(peso = 100, empanado = false)
+	const hamburguesaSimple = new HamburguesaDeCarne(pesoMedallon = 200, pan = panIndustrial)
+	const vacio = new CorteCarne(peso = 255, coccion = apunto)
+	const parrillada = new Parrillada(platos = [provoletaSinEmpanar,hamburguesaSimple,vacio])
+
+	assert.that(parrillada.esEspecial())
+	
+	assert.notThat(parrillada.esAptoCeliaco())
+	
+	assert.equals(parrillada.valoracion(), 100)
+	
+	assert.equals(parrillada.peso(), 615)	
+
+	assert.equals(parrillada.precio(), 30000)		
+}
+
+test "El comensal celiaco se da un gusto" {
+	const comensalCeliaco = new Comensal(dinero = 1000, tipoDeComensal = celiaco)
+	const provoletaSinEmpanar = new Provoleta(peso = 100, empanado = false)
+	const hamburguesaSimple = new HamburguesaDeCarne(pesoMedallon = 200, pan = panIndustrial)
+	const vacio = new CorteCarne(peso = 255, coccion = apunto)
+	parrilla.platos([provoletaSinEmpanar,hamburguesaSimple,vacio])
+	comensalCeliaco.darseUnGusto()
+	assert.that(comensalCeliaco.yaCompro())
+	
+	
+	comensalCeliaco.dinero(0)
+	comensalCeliaco.darseUnGusto()
+	assert.notThat(comensalCeliaco.yaCompro())	
+}
+
+
+test "Cambio de habito" {
+	const comensal = new Comensal(dinero = 1000, tipoDeComensal = celiaco)
+	comensal.viajoAParis()
+	const vacio = new CorteCarne(peso = 255, coccion = apunto)
+	const provoletaSinEmpanar = new Provoleta(peso = 100, empanado = false)
+	const hamburguesaSimple = new HamburguesaDeCarne(pesoMedallon = 200, pan = panIndustrial)
+	parrilla.platos([provoletaSinEmpanar,hamburguesaSimple,vacio])
+	comensal.darseUnGusto()
+	assert.that(comensal.yaCompro())
+}
